@@ -6,24 +6,31 @@ import {
   integer,
   doublePrecision,
   date,
+  index,
 } from "drizzle-orm/pg-core";
 
-export const places = pgTable("places", {
-  id: uuid("id").defaultRandom().primaryKey(),
+export const places = pgTable(
+  "places",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
 
-  userId: text("user_id").notNull(),
+    userId: text("user_id").notNull(),
 
-  name: text("name").notNull(),
-  rating: integer("rating").notNull(),
+    name: text("name").notNull(),
+    rating: integer("rating").notNull(),
 
-  note: text("note"),
+    note: text("note"),
 
-  latitude: doublePrecision("latitude"),
-  longitude: doublePrecision("longitude"),
-  address: text("address"),
+    latitude: doublePrecision("latitude"),
+    longitude: doublePrecision("longitude"),
+    address: text("address"),
 
-  visitedDate: date("visited_date"),
+    visitedDate: date("visited_date"),
 
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    userIdIdx: index("places_user_id_idx").on(table.userId),
+  }),
+);
