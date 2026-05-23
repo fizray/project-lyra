@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.4.1",
@@ -30,6 +34,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.31.10",
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0",
     "tailwindcss": "^4",
     "tsx": "^4.22.3",
     "typescript": "^5"
