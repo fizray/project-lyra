@@ -1,10 +1,11 @@
-import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { shadcn } from "@clerk/ui/themes";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import "@clerk/ui/themes/shadcn.css";
 import { cn } from "@/lib/utils";
+import { Header } from "@/components/ui/header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -42,15 +43,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ClerkProvider appearance={{ theme: shadcn }}>
-          <header className="flex justify-end items-center gap-3 h-16 px-6 border-b">
-            <Show when="signed-out">
-              <SignInButton />
-              <SignUpButton />
-            </Show>
-            <Show when="signed-in">
-              <UserButton />
-            </Show>
-          </header>
+          <Header />
           {children}
         </ClerkProvider>
       </body>
